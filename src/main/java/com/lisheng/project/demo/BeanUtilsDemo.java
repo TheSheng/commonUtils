@@ -14,8 +14,9 @@ public class BeanUtilsDemo {
         a.setAge("12");
         a.setName("13");
         a.setPass("14");
-        DemoB o = (DemoB)BeanUtils.entityToVo(a, DemoB.class);
-        System.out.println(o);
+        DemoB b=new DemoB();
+        BeanUtils.objectTranserToObejct(a, b);
+        System.out.println(b);
     }
 
 }

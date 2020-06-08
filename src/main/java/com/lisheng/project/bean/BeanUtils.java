@@ -24,16 +24,9 @@ public class BeanUtils {
     }
 
 
-    public static Object entityToVo(Object obj,Class target) throws Exception{
-        Constructor constructor =null;
-        try {
-           constructor= target.getConstructor();
-        }catch (Exception e){
-            throw new Exception("目标对象没有无参构造，暂不支持");
-        }
-        Object newObj = constructor.newInstance();
+    public static void objectTranserToObejct(Object obj,Object newObj) throws Exception{
         Map<String,Field> filedStore=new HashMap<>();
-        Arrays.stream(target.getDeclaredFields()).forEach(field -> {
+        Arrays.stream(newObj.getClass().getDeclaredFields()).forEach(field -> {
             filedStore.put(field.getName(),field);
         });
         Field[] declaredFields = obj.getClass().getDeclaredFields();
@@ -62,6 +55,5 @@ public class BeanUtils {
                 fieldTarget.set(newObj,field.get(obj));
             }
         }
-        return newObj;
     }
 }
